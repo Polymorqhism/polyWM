@@ -7,4 +7,6 @@ qemu-system-x86_64 \
   -smp 2 \
   -drive file=arch.qcow2,format=qcow2 \
   -device virtio-net-pci,netdev=net0 \
-  -netdev user,id=net0,hostfwd=tcp::2222-:22,hostfwd=tcp::1234-:1234
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+  -fsdev local,id=sharedfolder,path=wmfiles,security_model=passthrough \
+  -device virtio-9p-pci,fsdev=sharedfolder,mount_tag=hostshare
