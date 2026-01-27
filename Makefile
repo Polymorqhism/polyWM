@@ -1,14 +1,28 @@
-CC = gcc
-CFLAGS = -Wall -g
+CC = clang
+FLAGS = -Wall -Wextra -std=c99 -O2
 LIBS = -lX11
-TARGET = build/polyWM
-SRC = src/main.c
+OBJS = build/polywm.o build/util.o
+BIN = build/polywm
 
-all: $(TARGET)
+$(BIN): $(OBJS)
+	mkdir -p build
+	$(CC) $(OBJS) $(LIBS) -o $(BIN)
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(LIBS)
+build/polywm.o: polywm.c polywm.h util.h config.h
+	mkdir -p build
+	$(CC) $(FLAGS) -c $< -o $@
 
+build/util.o: util.c util.h polywm.h
+	mkdir -p build
+	$(CC) $(FLAGS) -c $< -o $@
+
+.PHONY: clean run install
 
 clean:
-	rm -f $(TARGET)
+	rm -rf build/*
+
+run: $(BIN)
+	./$(BIN)
+
+install: $(BIN)
+	cp $(BIN) /usr/local/bin/polywm
