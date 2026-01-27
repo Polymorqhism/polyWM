@@ -1,0 +1,12 @@
+qemu-system-x86_64 \
+  -enable-kvm \
+  -m 2048 \
+  -cpu host \
+  -smp 2 \
+  -drive file=arch.qcow2,format=qcow2 \
+  -cdrom archlinux.iso \
+  -boot order=d \
+  -device virtio-net-pci \
+  -netdev user,id=net0 \
+  -device virtio-gpu-pci \
+  -display gtk

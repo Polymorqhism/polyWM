@@ -1,1 +1,7 @@
 *.iso
+#*
+*~
+*.qcow2
+src/#*
+src/*~
+build/*
