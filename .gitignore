@@ -1,7 +1,10 @@
 *.iso
+.#*
 #*
 *~
+.*~
 *.qcow2
-src/#*
+src/.#*
 src/*~
+src/.*~
 build/*
