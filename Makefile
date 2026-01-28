@@ -2,7 +2,7 @@ CC = clang
 FLAGS = -Wall -Wextra -std=c99 -O2
 LIBS = -lX11
 OBJS = build/polywm.o build/util.o
-BIN = build/polywm
+BIN = build/polyWM
 
 $(BIN): $(OBJS)
 	mkdir -p build
@@ -16,13 +16,11 @@ build/util.o: util.c util.h polywm.h
 	mkdir -p build
 	$(CC) $(FLAGS) -c $< -o $@
 
-.PHONY: clean run install
+.PHONY: clean transfer
 
 clean:
 	rm -rf build/*
 
-run: $(BIN)
-	./$(BIN)
+transfer: $(BIN)
+	mv $(BIN) wmfiles/
 
-install: $(BIN)
-	cp $(BIN) /usr/local/bin/polywm
