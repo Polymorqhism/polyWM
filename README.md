@@ -13,7 +13,7 @@
 </p>
 
 > [!TIP]
-> This WM focuses on performance and minimalism. It is intended to be used by users who are able to debug issues on their own. It is intentionally stripped down to work on low end systems.
+> This WM focuses on performance and minimalism for low-level developers. It is intended to be used by users who are able to debug issues on their own. It is intentionally stripped down to work on low end systems.
 
 > [!CAUTION]
 > Due to the nature of X11, compiling versions from unknown sources (i.e. not from GitHub) may result in serious system compromise.
