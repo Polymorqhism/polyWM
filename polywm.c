@@ -122,6 +122,9 @@ void change_focus()
     if(focus != root && focus != None && win_count[current_workspace] > 1) {
         if(focus == windows[current_workspace][0]) {
             XSetInputFocus(dis, windows[current_workspace][1], RevertToPointerRoot, CurrentTime);
+            char *title;
+            XFetchName(dis, focus, &title);
+            render_text(title);
         } else {
             XSetInputFocus(dis, windows[current_workspace][0], RevertToPointerRoot, CurrentTime);
         }
