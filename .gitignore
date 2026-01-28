@@ -9,3 +9,4 @@ src/*~
 src/.*~
 build/*
 wmfiles
+run_vm.sh
