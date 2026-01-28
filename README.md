@@ -1,6 +1,6 @@
 <p align="center">
   <img
-    src="https://github.com/user-attachments/assets/fa87f70b-333b-4aac-8759-00fc5129d530"
+    src="https://github.com/user-attachments/assets/cf0ec1b8-dfe5-48c7-89d3-444e847806f9"
     alt="polyWM"
     width="120"
   />
