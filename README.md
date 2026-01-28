@@ -11,3 +11,14 @@
 <p align="center">
   Performance; minimalism.
 </p>
+
+> [!TIP]
+> This WM focuses on performance and minimalism. It is intended to be used by users who are able to debug issues on their own. It is intentionally stripped down.
+
+---
+
+### Get Started
+
+- Compile polyWM by using the Makefile
+- Run `startx` after setting up `.xinitrc` including the executable binary from your TTY.
+- Works best on Arch Linux. Other distributions have not been tested.
