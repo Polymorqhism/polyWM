@@ -21,18 +21,19 @@
 ---
 ### More Info
 
-- Uses `dmenu` by default. Change it through `config.h` and `polywm.c` if desired.
-- Uses `alacritty` by default. Change through aforementioned.
+- Uses `dmenu` by default. Change it through `polywm.c` if desired.
+- Uses `alacritty` by default. Change it through `polywm.c`.
+- Changes will only take effect after the WM is recompiled.
 
----
+
 ### Get Started
 
 - Compile polyWM by using the Makefile
 - Run `startx` after setting up `.xinitrc` including the executable binary from your TTY.
 - Works best on Arch Linux. Other distributions have not been tested.
 
----
+
 ### Prerequisites
 - dmenu
 - X11
-- XTerm / Alacritty
+- Alacritty
