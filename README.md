@@ -1,9 +1,10 @@
 <p align="center">
   <img
-    src="https://github.com/user-attachments/assets/cf0ec1b8-dfe5-48c7-89d3-444e847806f9"
+    src="polyWM.png"
     alt="polyWM"
     width="120"
   />
+
 </p>
 
 <h1 align="center">polyWM</h1>
