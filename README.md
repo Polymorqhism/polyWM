@@ -13,8 +13,7 @@
 </p>
 
 > [!TIP]
-> This WM focuses on performance and minimalism. It is intended to be used by users who are able to debug issues on their own. It is intentionally stripped down.
-> This WM works best on low end systems.
+> This WM focuses on performance and minimalism. It is intended to be used by users who are able to debug issues on their own. It is intentionally stripped down to work on low end systems.
 
 > [!CAUTION]
 > Due to the nature of X11, compiling versions from unknown sources (i.e. not from GitHub) may result in serious system compromise.
@@ -22,7 +21,7 @@
 ---
 ### More Info
 
-- _To prevent clutter, polyWM intentionally only allows for two tiles per workspace._
+- To prevent clutter and general misuse, polyWM intentionally only allows for two tiles per workspace.
 - The whole WM is considered experimental. Use at your own risk.
 - Uses `dmenu` by default. Change it through `polywm.c` if desired.
 - Uses `alacritty` by default. Change it through `polywm.c`.
