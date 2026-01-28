@@ -37,7 +37,7 @@
 - Hold `Mod4` (Windows key) and:
   - `ENTER` - opens the terminal (alacritty)
   - `P` - exits polyWM; you can remove this if you wish
-  - 'Q' - kills a window
+  - `Q` - kills a window
   - `D` - dmenu
   - more keybinds can be found in your `config.h`.
 
