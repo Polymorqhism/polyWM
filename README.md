@@ -23,6 +23,7 @@
 ### More Info
 
 - _To prevent clutter, polyWM intentionally only allows for two tiles per workspace._
+- The whole WM is considered experimental. Use at your own risk.
 - Uses `dmenu` by default. Change it through `polywm.c` if desired.
 - Uses `alacritty` by default. Change it through `polywm.c`.
 - Changes will only take effect after the WM is recompiled.
