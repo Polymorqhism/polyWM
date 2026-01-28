@@ -22,7 +22,7 @@
 ---
 ### More Info
 
-- To prevent clutter and general misuse, polyWM intentionally only allows for two tiles per workspace.
+- To prevent clutter and general misuse, polyWM intentionally only allows for two tiles per workspace. If violated, the new window gets pushed out and spawns at the top left of the screen. It will re-tile whenever possible.
 - The whole WM is considered experimental. Use at your own risk.
 - Uses `dmenu` by default. Change it through `polywm.c` if desired.
 - Uses `alacritty` by default. Change it through `polywm.c`.
@@ -31,9 +31,15 @@
 
 ### Get Started
 
-- Compile polyWM by using the Makefile
+- Compile polyWM by using the Makefile.
 - Run `startx` after setting up `.xinitrc` including the executable binary from your TTY.
 - Works best on Arch Linux. Other distributions have not been tested.
+- Hold `Mod4` (Windows key) and:
+  - `ENTER` - opens the terminal (alacritty)
+  - `P` - exits polyWM; you can remove this if you wish
+  - 'Q' - kills a window
+  - `D` - dmenu
+  - more keybinds can be found in your `config.h`.
 
 
 ### Prerequisites

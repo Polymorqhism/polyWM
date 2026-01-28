@@ -5,18 +5,30 @@
 
 #include "config.h"
 
+
+Window windows[2];
+int win_count = 0;
+
+Display *dis;
+Window root;
+XEvent ev;
+
+
 void spawn_terminal() { system("alacritty &"); }
 void quit() { system("killall Xorg"); }
 void dmenu() { system("dmenu_run &"); }
 
 void close()
 {
+    Window focus;
+    int revert;
 
+    XGetInputFocus(dis, &focus, &revert);
+
+    if(focus != root && focus != None) {
+        XKillClient(dis, focus);
+    }
 }
-
-Window windows[2];
-int win_count = 0;
-
 
 void tile_windows(Display *dis, int screen_number)
 {
@@ -31,10 +43,10 @@ void tile_windows(Display *dis, int screen_number)
     height = XDisplayHeight(dis, screen_number);
 
     if(win_count == 1) {
-        XMoveResizeWindow(dis, windows[0], 0, 0, width, height);
+        XMoveResizeWindow(dis, windows[0], 0, 0, width, height-5);
     } else if(win_count == 2) {
-        XMoveResizeWindow(dis, windows[0], 0, 0, width/2, height);
-        XMoveResizeWindow(dis, windows[1], width/2, 0, width/2, height);
+        XMoveResizeWindow(dis, windows[0], 0, 0, width/2, height-5);
+        XMoveResizeWindow(dis, windows[1], width/2, 0, width/2, height-5);
     }
 }
 
@@ -54,9 +66,6 @@ void map_request_handler(Display *dis, XEvent *ev, int screen_number)
 
 int main()
 {
-    Display *dis;
-    Window root;
-    XEvent ev;
 
     if(!(dis = XOpenDisplay(NULL))) return 1;
     root = DefaultRootWindow(dis);
