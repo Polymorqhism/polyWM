@@ -68,13 +68,13 @@
 **A:** You don't.
 
 > **Q:** Why does polyWM only have 2 tiles per workspace?
-**A:** The usage of polyWM is intended to be useful, not overly complicated. Adding support for more than two tiles would mean complicated tiling systems - this comes at the cost of performance, even if little.
+- **A:** The usage of polyWM is intended to be useful, not overly complicated. Adding support for more than two tiles would mean complicated tiling systems - this comes at the cost of performance, even if little.
 
 > **Q:** What do I do if polyWM crashes and doesn't work?
-**A:** Ensure that your system supports it. Debugging is entirely in the hands of the user. If the issue is reproducible on an unmodified build, open an issue.
+- **A:** Ensure that your system supports it. Debugging is entirely in the hands of the user. If the issue is reproducible on an unmodified build, open an issue.
 
 > **Q:** How do I change or add more binds?
-**A:** Changing the binds can be done through the file `config.h`. Adding more binds would mean writing their functionality directly.
+- **A:** Changing the binds can be done through the file `config.h`. Adding more binds would mean writing their functionality directly.
 
 ---
 
