@@ -39,6 +39,7 @@
   - `P` - exits polyWM; you can remove this if you wish
   - `Q` - kills a window
   - `D` - dmenu
+  - `J/K` - backward/foward workspace movement
   - more keybinds can be found in your `config.h`.
 
 

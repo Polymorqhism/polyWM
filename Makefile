@@ -21,6 +21,8 @@ build/util.o: util.c util.h polywm.h
 clean:
 	rm -rf build/*
 
+
+# Do not use this unless you are running in on a VM. If that is the case, you may need to modify 'wmfiles/' directory. This requires proper mounting of the VM to allow for shared directories.
 transfer: $(BIN)
 	mv $(BIN) wmfiles/
 
