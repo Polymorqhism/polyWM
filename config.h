@@ -3,7 +3,7 @@
 #include <X11/Xlib.h>
 #include "util.h"
 
-#define BG_COLOR "#090017"
+#define BG_COLOR "#293329"
 
 
 void spawn_terminal();
