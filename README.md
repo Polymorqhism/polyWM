@@ -39,3 +39,7 @@
 - dmenu
 - X11
 - Alacritty
+
+---
+
+If you are new to Linux, setting up DEs and/or following documentation, do **_not_** use this WM.
