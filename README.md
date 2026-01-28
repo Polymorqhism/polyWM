@@ -65,7 +65,7 @@
 
 ### FAQ
 > **Q:** How do I rice polyWM to look good?
-**A:** You don't.
+- **A:** You don't.
 
 > **Q:** Why does polyWM only have 2 tiles per workspace?
 - **A:** The usage of polyWM is intended to be useful, not overly complicated. Adding support for more than two tiles would mean complicated tiling systems - this comes at the cost of performance, even if little.
