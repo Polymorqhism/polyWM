@@ -123,10 +123,13 @@ void change_focus()
         if(focus == windows[current_workspace][0]) {
             XSetInputFocus(dis, windows[current_workspace][1], RevertToPointerRoot, CurrentTime);
             char *title;
-            XFetchName(dis, focus, &title);
+            XFetchName(dis, windows[current_workspace][1], &title);
             render_text(title);
         } else {
             XSetInputFocus(dis, windows[current_workspace][0], RevertToPointerRoot, CurrentTime);
+            char *title;
+            XFetchName(dis, windows[current_workspace][0], &title);
+            render_text(title);
         }
     }
 }
