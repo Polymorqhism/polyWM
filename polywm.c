@@ -205,7 +205,7 @@ int main()
                     windows[current_workspace][i] = windows[current_workspace][win_count[current_workspace] -1];
                     win_count[current_workspace]--;
                     tile_windows();
-                    if(win_count > 0) {
+                    if(win_count[current_workspace] > 0) {
                         XSetInputFocus(dis, windows[current_workspace][0], RevertToPointerRoot, CurrentTime);
                     }
                     break;
