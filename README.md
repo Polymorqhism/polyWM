@@ -28,7 +28,7 @@
 - Uses `alacritty` by default. Change it through `polywm.c`.
 - Changes will only take effect after the WM is recompiled.
 - Do not "rice" this WM. It is intended to be minimal. Any additions come at the cost of possible instability and performance cost.
-- polyWM is not responsible for issues caused by modified builds, untested distributions, software or hardware. 
+- polyWM is not responsible for issues caused by modified builds, untested distributions, software or hardware.
 
 ### License
 - Uses the GPL-2.0 License. See LICENSE for details.
@@ -81,7 +81,7 @@
 | Metric | Value |
 |--------|-------|
 | Memory | ~3 MB |
-| Binary Size   | ~22K |
+| Binary Size   | ~18K |
 
 
 ---
