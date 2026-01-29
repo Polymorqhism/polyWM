@@ -1,8 +1,3 @@
-#include <X11/keysym.h>
-#include <stdlib.h>
-#include <X11/Xlib.h>
-#include "util.h"
-
 #define BG_COLOR "#293329"
 #define BAR_HEIGHT 20
 #define WORKSPACES 6
@@ -14,6 +9,7 @@ void close();
 void change_focus();
 void workspace_front();
 void workspace_back();
+
 
 static Keybind keys[] = {
     { XK_Return, Mod4Mask, spawn_terminal },

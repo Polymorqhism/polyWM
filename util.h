@@ -1,3 +1,20 @@
+#include <X11/Xlib.h>
+#define LENGTH(X) (sizeof(X) / sizeof(X[0]))
+#include <X11/keysym.h>
 #include "polywm.h"
 
+typedef struct {
+    KeySym key;
+    unsigned int mod;
+    void (*handler)(void);
+} Keybind;
+
 void grab_key(Display *dis, Window root, KeySym key, unsigned int modifier);
+void render_text(char *title);
+void load_workspace();
+void workspace_back();
+void workspace_front();
+void change_focus();
+void map_request_handler(Display *dis, XEvent *ev);
+void unload_workspace();
+void tile_windows();
