@@ -3,7 +3,6 @@
 #include <X11/Xutil.h>
 #include <X11/keysym.h>
 
-
 extern int WORKSPACES;
 extern char buf[64];
 extern int width, height;

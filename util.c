@@ -1,4 +1,3 @@
-#include <X11/Xlib.h>
 #include "util.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -44,10 +43,9 @@ void close()
 {
     Window focus;
     int revert;
-
     XGetInputFocus(dis, &focus, &revert);
 
-    if(focus != root && focus != None) {
+    if(focus != root && focus != None && focus != PointerRoot) {
         XKillClient(dis, focus);
     }
 }

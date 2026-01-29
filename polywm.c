@@ -8,7 +8,6 @@
 #include <X11/keysym.h>
 #include "config.h"
 
-
 char buf[64];
 
 int width, height;

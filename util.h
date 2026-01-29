@@ -3,12 +3,6 @@
 #include <X11/keysym.h>
 #include "polywm.h"
 
-typedef struct {
-    KeySym key;
-    unsigned int mod;
-    void (*handler)(void);
-} Keybind;
-
 void grab_key(Display *dis, Window root, KeySym key, unsigned int modifier);
 void render_text(char *title);
 void load_workspace();
