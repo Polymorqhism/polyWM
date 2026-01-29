@@ -82,20 +82,6 @@ int main()
             render_text(title);
         }
 
-        else if(ev.type == DestroyNotify) {
-            for(int i = 0; i < win_count[current_workspace]; i++) {
-                if(windows[current_workspace][i] == ev.xdestroywindow.window) {
-                    windows[current_workspace][i] = windows[current_workspace][win_count[current_workspace] -1];
-                    win_count[current_workspace]--;
-                    tile_windows();
-                    if(win_count[current_workspace] > 0) {
-                        XSetInputFocus(dis, windows[current_workspace][0], RevertToPointerRoot, CurrentTime);
-                    }
-                    break;
-                }
-            }
-        }
-
         else if(ev.type == UnmapNotify) {
             for(int i = 0; i < win_count[current_workspace]; i++) {
                 if(windows[current_workspace][i] == ev.xunmap.window) {
