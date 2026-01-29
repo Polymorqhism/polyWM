@@ -64,7 +64,6 @@ void close()
 void load_workspace()
 {
     char *title;
-    int height, width;
 
     width = DisplayWidth(dis, screen_number);
     height = DisplayHeight(dis, screen_number);
