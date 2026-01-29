@@ -124,7 +124,7 @@ void change_focus()
 }
 
 
-void map_request_handler(Display *dis, XEvent *ev, int screen_number)
+void map_request_handler(Display *dis, XEvent *ev)
 {
     if((win_count[current_workspace] < 3)) {
         windows[current_workspace][win_count[current_workspace]] = ev->xmaprequest.window;
@@ -173,16 +173,13 @@ int main()
     XDrawString(dis, root, gc, 0, height-(BAR_HEIGHT/2), buf, strlen(buf));
     XSelectInput(dis, root, SubstructureRedirectMask | SubstructureNotifyMask);
 
-
-    unsigned int modifiers[] = { 0, Mod2Mask, LockMask, Mod2Mask|LockMask };
-
     XSync(dis, False);
 
     for(;;) {
         XNextEvent(dis, &ev);
 
         if(ev.type == MapRequest) {
-            map_request_handler(dis, &ev, screen_number);
+            map_request_handler(dis, &ev);
         }
 
         else if(ev.type == KeyPress) {
