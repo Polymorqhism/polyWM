@@ -30,16 +30,6 @@ void dmenu() { system("dmenu_run &"); }
 
 void tile_windows()
 {
-    /*
-       yes, i am getting dimensions every time i have to re-tile windows
-       call it bad practice, i call it 'safety' if the dimensions SOMEHOW change before re-tiling
-     */
-
-    int width, height;
-
-    width = XDisplayWidth(dis, screen_number);
-    height = XDisplayHeight(dis, screen_number);
-
     if(win_count[current_workspace] == 1) {
         XMoveResizeWindow(dis, windows[current_workspace][0], 0, 0, width, height-BAR_HEIGHT);
     } else if(win_count[current_workspace] == 2) {
@@ -155,6 +145,10 @@ int main()
 {
 
     if(!(dis = XOpenDisplay(NULL))) return 1;
+    Atom net_wm_name = XInternAtom(dis, "_NET_WM_NAME", False);
+    Atom utf8_string = XInternAtom(dis, "UTF8_STRING", False);
+    XChangeProperty(dis, root, net_wm_name, utf8_string, 8, PropModeReplace,
+                    (unsigned char*)"polyWM", 6);
 
     screen_number = DefaultScreen(dis);
     root = DefaultRootWindow(dis);
