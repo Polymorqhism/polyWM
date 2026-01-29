@@ -145,11 +145,6 @@ int main()
 {
 
     if(!(dis = XOpenDisplay(NULL))) return 1;
-    Atom net_wm_name = XInternAtom(dis, "_NET_WM_NAME", False);
-    Atom utf8_string = XInternAtom(dis, "UTF8_STRING", False);
-    XChangeProperty(dis, root, net_wm_name, utf8_string, 8, PropModeReplace,
-                    (unsigned char*)"polyWM", 6);
-
     screen_number = DefaultScreen(dis);
     root = DefaultRootWindow(dis);
 
