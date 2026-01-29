@@ -76,6 +76,14 @@
 > **Q:** How do I change or add more binds?
 - **A:** Changing the binds can be done through the file `config.h`. Adding more binds would mean writing their functionality directly.
 
+
+## Metrics
+| Metric | Value |
+|--------|-------|
+| Memory | ~3 MB |
+| Binary Size   | ~22K |
+
+
 ---
 
 If you are new to Linux, setting up DEs and/or following documentation, do **_not_** use this WM. If you do not understand the contents of this README, you are advised not to use this project.
