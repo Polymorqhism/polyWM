@@ -78,8 +78,10 @@ int main()
         else if(ev.type == EnterNotify) {
             set_focus(ev.xcrossing.window);
             char *title;
-            XFetchName(dis, ev.xcrossing.window, &title);
-            render_text(title);
+            if(XFetchName(dis, ev.xcrossing.window, &title)) {
+                render_text(title);
+                XFree(title);
+            }
         }
 
         else if(ev.type == UnmapNotify) {

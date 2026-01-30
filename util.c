@@ -63,7 +63,10 @@ void load_workspace()
     width = DisplayWidth(dis, screen_number);
     height = DisplayHeight(dis, screen_number);
 
-    XFetchName(dis, ev.xcrossing.window, &title);
+    if(hName(dis, ev.xcrossing.window, &title)) {
+        render_text(title);
+        XFree(title);
+    }
     render_text(title);
     for(int i = 0; i<win_count[current_workspace]; i++) {
         XMapWindow(dis, windows[current_workspace][i]);
@@ -107,13 +110,17 @@ void change_focus()
         if(focus == windows[current_workspace][0]) {
             XSetInputFocus(dis, windows[current_workspace][1], RevertToPointerRoot, CurrentTime);
             char *title;
-            XFetchName(dis, windows[current_workspace][1], &title);
-            render_text(title);
+            if(XFetchName(dis, windows[current_workspace][1], &title)) {
+                render_text(title);
+                XFree(title);
+            }
         } else {
             XSetInputFocus(dis, windows[current_workspace][0], RevertToPointerRoot, CurrentTime);
             char *title;
-            XFetchName(dis, windows[current_workspace][0], &title);
-            render_text(title);
+            if(XFetchName(dis, windows[current_workspace][0], &title)) {
+                render_text(title);
+                XFree(title);
+            }
         }
     }
 }
