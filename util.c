@@ -28,6 +28,12 @@ void tile_windows()
     }
 }
 
+void set_root_focus()
+{
+    XSetInputFocus(dis, root, RevertToPointerRoot, CurrentTime);
+}
+
+
 void render_text(char *title)
 {
     snprintf(buf, sizeof(buf), "Workspace: %d/%d : %s", current_workspace + 1, WORKSPACES, title);
@@ -115,6 +121,14 @@ void change_focus()
 
 void map_request_handler(Display *dis, XEvent *ev)
 {
+    Window transient_for;
+    if(XGetTransientForHint(dis, ev->xmaprequest.window, &transient_for)) {
+        XMapWindow(dis, ev->xmaprequest.window);
+        XSetInputFocus(dis, ev->xmaprequest.window, RevertToPointerRoot, CurrentTime);
+        return;
+    }
+
+
     if((win_count[current_workspace] < 3)) {
         windows[current_workspace][win_count[current_workspace]] = ev->xmaprequest.window;
         win_count[current_workspace]++;
@@ -127,4 +141,20 @@ void map_request_handler(Display *dis, XEvent *ev)
     tile_windows();
 }
 
+
+void set_focus(Window window)
+{
+    if(window == None || window == root) {
+        set_root_focus();
+        return;
+    }
+
+    XWindowAttributes attr;
+
+    if(XGetWindowAttributes(dis, window, &attr) && attr.map_state == IsViewable) {
+        XSetInputFocus(dis, window, RevertToPointerRoot, CurrentTime);
+    } else {
+        set_root_focus();
+    }
+}
 

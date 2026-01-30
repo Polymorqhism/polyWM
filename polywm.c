@@ -76,28 +76,37 @@ int main()
         }
 
         else if(ev.type == EnterNotify) {
-            XSetInputFocus(dis, ev.xcrossing.window, RevertToPointerRoot, CurrentTime);
+            set_focus(ev.xcrossing.window);
             char *title;
             XFetchName(dis, ev.xcrossing.window, &title);
             render_text(title);
         }
 
         else if(ev.type == UnmapNotify) {
+            if(ev.xunmap.send_event) {
+                if(win_count[current_workspace] > 0) {
+                    set_focus(windows[current_workspace][0]);
+                } else {
+                    set_root_focus();
+                    break;
+                }
+                continue;
+            }
             for(int i = 0; i < win_count[current_workspace]; i++) {
                 if(windows[current_workspace][i] == ev.xunmap.window) {
                     windows[current_workspace][i] = windows[current_workspace][win_count[current_workspace] -1];
                     win_count[current_workspace]--;
                     tile_windows();
                     if(win_count[current_workspace] > 0) {
-                        XSetInputFocus(dis, windows[current_workspace][0], RevertToPointerRoot, CurrentTime);
+                        set_focus(windows[current_workspace][0]);
+                    } else {
+                        set_root_focus();
+                        break;
                     }
-                    break;
                 }
             }
         }
     }
-
     XFreeCursor(dis, cursor);
     XCloseDisplay(dis);
-    return 0;
 }
