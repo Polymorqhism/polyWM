@@ -81,7 +81,7 @@
 | Metric | Value |
 |--------|-------|
 | Memory | ~3 MB |
-| Binary Size   | ~18K |
+| Binary Size   | ~23K |
 
 
 ---
