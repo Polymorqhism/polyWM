@@ -106,6 +106,21 @@ int main()
                 }
             }
         }
+
+        else if(ev.type == DestroyNotify) {
+            for(int ws = 0; ws < WORKSPACES; ws++) {
+                for(int i = 0; i < win_count[ws]; i++) {
+                    if(windows[ws][i] == ev.xdestroywindow.window) {
+                        windows[ws][i] = windows[ws][win_count[ws] - 1];
+                        win_count[ws]--;
+                        if(ws == current_workspace) {
+                            tile_windows();
+                        }
+                        break;
+                    }
+                }
+            }
+        }
     }
     XFreeCursor(dis, cursor);
     XCloseDisplay(dis);
