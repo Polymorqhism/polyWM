@@ -63,7 +63,7 @@ void load_workspace()
     width = DisplayWidth(dis, screen_number);
     height = DisplayHeight(dis, screen_number);
 
-    if(hName(dis, ev.xcrossing.window, &title)) {
+    if(XFetchName(dis, ev.xcrossing.window, &title)) {
         render_text(title);
         XFree(title);
     }
