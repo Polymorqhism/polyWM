@@ -90,7 +90,6 @@ int main()
                     set_focus(windows[current_workspace][0]);
                 } else {
                     set_root_focus();
-                    break;
                 }
                 continue;
             }
@@ -98,9 +97,9 @@ int main()
                 if(windows[current_workspace][i] == ev.xunmap.window) {
                     windows[current_workspace][i] = windows[current_workspace][win_count[current_workspace] -1];
                     win_count[current_workspace]--;
-                    tile_windows();
                     if(win_count[current_workspace] > 0) {
                         set_focus(windows[current_workspace][0]);
+                        tile_windows();
                     } else {
                         set_root_focus();
                         break;
@@ -115,7 +114,7 @@ int main()
                     if(windows[ws][i] == ev.xdestroywindow.window) {
                         windows[ws][i] = windows[ws][win_count[ws] - 1];
                         win_count[ws]--;
-                        if(ws == current_workspace) {
+                        if(ws == current_workspace && win_count[ws] > 0) {
                             tile_windows();
                         }
                         break;
