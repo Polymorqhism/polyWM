@@ -12,6 +12,9 @@ void close();
 void change_focus();
 void workspace_front();
 void workspace_back();
+void move_window_front();
+void move_window_back();
+
 
 typedef struct {
     KeySym key;
@@ -27,4 +30,6 @@ static Keybind keys[] = {
     { XK_f, Mod4Mask, change_focus },
     { XK_j, Mod4Mask, workspace_back },
     { XK_k, Mod4Mask, workspace_front },
+    { XK_h, Mod4Mask, move_window_back },
+    { XK_l, Mod4Mask, move_window_front },
 };

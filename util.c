@@ -18,6 +18,28 @@ void spawn_terminal() { system("alacritty &"); }
 void quit() { system("killall Xorg"); }
 void dmenu() { system("dmenu_run &"); }
 
+
+void set_root_focus()
+{
+    XSetInputFocus(dis, root, RevertToPointerRoot, CurrentTime);
+}
+
+void set_focus(Window window)
+{
+    if(window == None || window == root) {
+        set_root_focus();
+        return;
+    }
+
+    XWindowAttributes attr;
+
+    if(XGetWindowAttributes(dis, window, &attr) && attr.map_state == IsViewable) {
+        XSetInputFocus(dis, window, RevertToPointerRoot, CurrentTime);
+    } else {
+        set_root_focus();
+    }
+}
+
 void tile_windows()
 {
     if(win_count[current_workspace] == 1) {
@@ -27,12 +49,6 @@ void tile_windows()
         XMoveResizeWindow(dis, windows[current_workspace][1], width/2, 0, width/2, height-BAR_HEIGHT);
     }
 }
-
-void set_root_focus()
-{
-    XSetInputFocus(dis, root, RevertToPointerRoot, CurrentTime);
-}
-
 
 void render_text(char *title)
 {
@@ -144,24 +160,84 @@ void map_request_handler(Display *dis, XEvent *ev)
     XSelectInput(dis, ev->xmaprequest.window, EnterWindowMask);
     XMapWindow(dis, ev->xmaprequest.window);
     XAddToSaveSet(dis, ev->xmaprequest.window);
-    XSetInputFocus(dis, ev->xmaprequest.window, RevertToPointerRoot, CurrentTime);
+    set_focus(ev->xmaprequest.window);
     tile_windows();
 }
 
 
-void set_focus(Window window)
+
+void move_window_front()
 {
-    if(window == None || window == root) {
-        set_root_focus();
+    Window focus;
+    int revert;
+    XGetInputFocus(dis, &focus, &revert);
+
+    if(focus == root || focus == None || focus == PointerRoot) {
         return;
     }
 
-    XWindowAttributes attr;
+    if(current_workspace + 1 >= WORKSPACES ) {
+        return;
+    }
 
-    if(XGetWindowAttributes(dis, window, &attr) && attr.map_state == IsViewable) {
-        XSetInputFocus(dis, window, RevertToPointerRoot, CurrentTime);
+    if(win_count[current_workspace+1] >= 2) {
+        return;
+    }
+
+    for(int i = 0; i!=win_count[current_workspace]; i++) {
+        if(windows[current_workspace][i] == focus) {
+            windows[current_workspace+1][win_count[current_workspace+1]] = windows[current_workspace][i];
+            windows[current_workspace][i] = windows[current_workspace][win_count[current_workspace] -1];
+            win_count[current_workspace]--;
+            win_count[current_workspace+1]++;
+
+            XUnmapWindow(dis, focus);
+            tile_windows();
+            break;
+        }
+    }
+
+    if(win_count[current_workspace] > 0) {
+        set_focus(windows[current_workspace][0]);
     } else {
         set_root_focus();
     }
 }
 
+void move_window_back()
+{
+    Window focus;
+    int revert;
+    XGetInputFocus(dis, &focus, &revert);
+
+    if(focus == root || focus == None || focus == PointerRoot) {
+        return;
+    }
+
+    if(current_workspace == 0) {
+        return;
+    }
+
+    if(win_count[current_workspace-1] >= 2) {
+        return;
+    }
+
+    for(int i = 0; i!=win_count[current_workspace]; i++) {
+        if(windows[current_workspace][i] == focus) {
+            windows[current_workspace-1][win_count[current_workspace-1]] = windows[current_workspace][i];
+            windows[current_workspace][i] = windows[current_workspace][win_count[current_workspace] -1];
+            win_count[current_workspace]--;
+            win_count[current_workspace-1]++;
+
+            XUnmapWindow(dis, focus);
+            tile_windows();
+            break;
+        }
+    }
+
+    if(win_count[current_workspace] > 0) {
+        set_focus(windows[current_workspace][0]);
+    } else {
+        set_root_focus();
+    }
+}
