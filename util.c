@@ -18,6 +18,16 @@ void spawn_terminal() { system("alacritty &"); }
 void quit() { system("killall Xorg"); }
 void dmenu() { system("dmenu_run &"); }
 
+void render_text(char *title)
+{
+    snprintf(buf, sizeof(buf), "Workspace: %d/%d : %s", current_workspace + 1, WORKSPACES, title);
+
+    XSetForeground(dis, gc, xcolor.pixel);
+    XFillRectangle(dis, root, gc, 0, height - BAR_HEIGHT, width, BAR_HEIGHT);
+
+    XSetForeground(dis, gc, WhitePixel(dis, screen_number));
+    XDrawString(dis, root, gc, 5, height - (BAR_HEIGHT/2), buf, strlen(buf));
+}
 
 void set_root_focus()
 {
@@ -50,16 +60,6 @@ void tile_windows()
     }
 }
 
-void render_text(char *title)
-{
-    snprintf(buf, sizeof(buf), "Workspace: %d/%d : %s", current_workspace + 1, WORKSPACES, title);
-
-    XSetForeground(dis, gc, xcolor.pixel);
-    XFillRectangle(dis, root, gc, 0, height - BAR_HEIGHT, width, BAR_HEIGHT);
-
-    XSetForeground(dis, gc, WhitePixel(dis, screen_number));
-    XDrawString(dis, root, gc, 5, height - (BAR_HEIGHT/2), buf, strlen(buf));
-}
 
 void close()
 {
@@ -162,6 +162,11 @@ void map_request_handler(Display *dis, XEvent *ev)
     XAddToSaveSet(dis, ev->xmaprequest.window);
     set_focus(ev->xmaprequest.window);
     tile_windows();
+    char *title;
+    if(XFetchName(dis, ev->xcrossing.window, &title)) {
+        render_text(title);
+        XFree(title);
+    }
 }
 
 

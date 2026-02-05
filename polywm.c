@@ -88,6 +88,7 @@ int main()
             if(ev.xunmap.send_event) {
                 if(win_count[current_workspace] > 0) {
                     set_focus(windows[current_workspace][0]);
+                    XSync(dis, False);
                 } else {
                     set_root_focus();
                 }
@@ -99,7 +100,9 @@ int main()
                     win_count[current_workspace]--;
                     if(win_count[current_workspace] > 0) {
                         set_focus(windows[current_workspace][0]);
+                        XSync(dis, False);
                         tile_windows();
+                        break;
                     } else {
                         set_root_focus();
                         break;
@@ -114,9 +117,18 @@ int main()
                     if(windows[ws][i] == ev.xdestroywindow.window) {
                         windows[ws][i] = windows[ws][win_count[ws] - 1];
                         win_count[ws]--;
-                        if(ws == current_workspace && win_count[ws] > 0) {
-                            tile_windows();
+                        if(ws != current_workspace) {
+                            break;
                         }
+
+                        tile_windows();
+
+                        if(win_count[ws] == 0) {
+                            set_root_focus();
+                            break;
+                        }
+                        set_focus(windows[ws][0]);
+
                         break;
                     }
                 }
