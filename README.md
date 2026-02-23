@@ -16,9 +16,6 @@
 > [!TIP]
 > This WM focuses on performance and minimalism for low-level developers. It is intended to be used by users who are able to debug issues on their own. It is intentionally stripped down to work on low-end systems.
 
-> [!CAUTION]
-> Due to the nature of X11, compiling versions from unknown sources (i.e. not from GitHub) may result in serious system compromise.
-
 ---
 ### More Info
 
@@ -29,6 +26,7 @@
 - Changes will only take effect after the WM is recompiled.
 - Do not "rice" this WM. It is intended to be minimal. Any additions come at the cost of possible instability and performance cost.
 - polyWM is not responsible for issues caused by modified builds, untested distributions, software or hardware.
+- Commits to this repository are only added when there is maintenance required.
 
 ### License
 - Uses the GPL-2.0 License. See LICENSE for details.
