@@ -1,25 +1,29 @@
 CC = clang
-FLAGS = -Wall -Wextra -std=c99 -O2
-LIBS = -lxcb
-OBJS = build/polywm.o build/util.o
+CFLAGS = -Wall -Wextra -std=c99 -O2 -I. -Ibinds
+LIBS = -lX11
+
 BIN = build/polyWM
 
-$(BIN): $(OBJS)
-	mkdir -p build
-	$(CC) $(OBJS) $(LIBS) -o $(BIN)
+SRC := $(shell find . -name "*.c")
+OBJ := $(patsubst ./%.c, build/%.o, $(SRC))
+DEPS := $(OBJ:.o=.d)
 
-build/polywm.o: polywm.c polywm.h util.h config.h
-	mkdir -p build
-	$(CC) $(FLAGS) -c $< -o $@
+all: $(BIN)
 
-build/util.o: util.c util.h polywm.h
+$(BIN): $(OBJ)
 	mkdir -p build
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(OBJ) $(LIBS) -o $(BIN)
 
-.PHONY: clean move
+# compile + generate dependency files (.d)
+build/%.o: %.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+
+# include dependency files (auto header tracking)
+-include $(DEPS)
 
 clean:
-	rm -rf build/*
+	rm -rf build
 
-move:
+move: all
 	mv $(BIN) ~/polyWM-dev

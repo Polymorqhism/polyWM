@@ -1,5 +1,14 @@
-#include <xcb/xcb.h>
-#include <xcb/xcb_keysyms.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/keysym.h>
+#include <string.h>
+#include <X11/cursorfont.h>
 
-extern xcb_connection_t *dpy;
-extern xcb_screen_t *scr;
+extern Display *dis;
+extern int height;
+extern int width;
+extern Window root;
+extern XEvent ev;
+extern GC gc;
+extern XColor xcolor;
+extern int screen_number;

@@ -10,7 +10,7 @@
 <h1 align="center">polyWM</h1>
 
 <p align="center">
-  Performance; minimalism.
+  Simple; capable.
 </p>
 
 > [!IMPORTANT]
@@ -18,7 +18,9 @@
 
 ---
 ### More Info
-- ...
+- Unlike polyWM-legacy, polyWM no longer focuses purely on performance. The goal of the rewrite is to ensure that the code is maintainable and complete with proper file structure.
+- polyWM uses linked lists to store windows on a workspace. Previously, it used a static array which led to many issues.
+- As of current, the project is incomplete.
 
 
 ### License

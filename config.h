@@ -1,2 +1,7 @@
-#define MOD1 XCB_MOD_MASK_4 // super key (windows key on certain keyboards)
-#define MOD2 XCB_MOD_MASK_SHIFT // shift
+#include <X11/Xlib.h>
+#include "binds/binds.h"
+
+static Keybind keys[] = {
+    { XK_Return, Mod4Mask, spawn, {.v = "kitty"} },
+    { XK_d, Mod4Mask, spawn, {.v = "dmenu_run"} }
+};
