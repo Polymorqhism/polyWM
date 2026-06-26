@@ -15,3 +15,4 @@ typedef struct {
 } Keybind;
 
 extern void spawn(const Arg *arg);
+extern void grab_key(Display *dis, Window root, KeySym key, unsigned int modifier);
